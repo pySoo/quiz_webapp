@@ -34,6 +34,11 @@ export default function QuizPage() {
     return <Navigate to={PATH.ROOT} />;
   }
 
+  if (quizData[quizId] == null) {
+    alert('잘못된 접근입니다. 메인 페이지로 이동합니다.');
+    return <Navigate to={PATH.ROOT} />;
+  }
+
   return (
     <S.Wrapper>
       {!isDataEmpty && (
