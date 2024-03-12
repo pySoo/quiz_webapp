@@ -17,17 +17,23 @@ export default function QuizResultPage() {
 
   const navigate = useNavigate();
 
+  // 퀴즈 개수와 정답 개수가 다른 경우 올바르지 않은 데이터이기 때문에 메인 페이지로 이동합니다.
+  if (quizData.length !== answerList.length) {
+    alert('유효하지 않은 데이터입니다. 메인 페이지로 이동합니다.');
+    return <Navigate to={PATH.ROOT} />;
+  }
+
   // 기존 quizData에 선택한 답과 오답 노트에서의 번호 표기를 위해 id를 추가합니다.
   const selectedAnswerList = quizData.map((quiz, index) => {
-    return { ...quiz, id: index, selectedAnswer: answerList[index]?.answer };
+    return { ...quiz, id: index, selectedAnswer: answerList[index].answer };
   });
 
   const correctAnswer = selectedAnswerList.filter(
-    (quiz, index) => quiz.correct_answer === answerList[index]?.answer
+    (quiz, index) => quiz.correct_answer === answerList[index].answer
   );
 
   const incorrectAnswer = selectedAnswerList.filter(
-    (quiz, index) => quiz.correct_answer !== answerList[index]?.answer
+    (quiz, index) => quiz.correct_answer !== answerList[index].answer
   );
 
   useEffect(() => {
