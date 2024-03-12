@@ -10,6 +10,7 @@ export interface Quiz {
   difficulty: string;
   question: string;
   type: string;
+  quizList: string[];
 }
 
 export interface SelectedAnswer extends Quiz {
