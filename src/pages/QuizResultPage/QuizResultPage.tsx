@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 import { PATH } from '@/routes/path';
 import useQuizStore from '@/store/quizStore';
@@ -19,15 +19,15 @@ export default function QuizResultPage() {
 
   // 기존 quizData에 선택한 답과 오답 노트에서의 번호 표기를 위해 id를 추가합니다.
   const selectedAnswerList = quizData.map((quiz, index) => {
-    return { ...quiz, id: index, selectedAnswer: answerList[index].answer };
+    return { ...quiz, id: index, selectedAnswer: answerList[index]?.answer };
   });
 
   const correctAnswer = selectedAnswerList.filter(
-    (quiz, index) => quiz.correct_answer === answerList[index].answer
+    (quiz, index) => quiz.correct_answer === answerList[index]?.answer
   );
 
   const incorrectAnswer = selectedAnswerList.filter(
-    (quiz, index) => quiz.correct_answer !== answerList[index].answer
+    (quiz, index) => quiz.correct_answer !== answerList[index]?.answer
   );
 
   useEffect(() => {
