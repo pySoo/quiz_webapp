@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { PATH } from '@/routes/path';
 import useQuizStore from '@/store/quizStore';
 import { Quiz } from '@/types/quiz';
-import { shuffleArray } from '@/utils/shuffle';
 import { toastify } from '@/utils/toast';
 
 import * as S from './QuizContents.style';
@@ -18,12 +17,6 @@ const FINAL_ID = 9;
 export default function QuizContents({ id, quiz }: Props) {
   const quizResult = useQuizStore(state => state.quizResult);
   const setQuizResult = useQuizStore(state => state.setQuizResult);
-
-  // 정답과 오답 퀴즈 리스트를 섞습니다.
-  const shuffledQuizList = shuffleArray([
-    quiz.correct_answer,
-    ...quiz.incorrect_answers,
-  ]);
 
   const { answerList } = quizResult;
 
@@ -66,7 +59,7 @@ export default function QuizContents({ id, quiz }: Props) {
     <S.Wrapper>
       <S.QuizTitle>{quiz.question}</S.QuizTitle>
       <S.QuizList>
-        {shuffledQuizList.map((quiz, index) => (
+        {quiz.quizList.map((quiz, index) => (
           <S.QuizItem key={index}>
             <S.QuizButton
               $isSelected={
