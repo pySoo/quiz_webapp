@@ -1,4 +1,4 @@
-# 박수현 | 클래스팅 Frontend 채용 과제
+# Quiz Webapp
 
 ## 🌐 Website
 
