@@ -4,7 +4,7 @@ import { axiosInstance } from './axiosInstance';
 
 export const getQuizList = async () => {
   const response = await axiosInstance.get<QuizResponse>(
-    `?amount=10&category=9&difficulty=easy&type=multiple`
+    `?amount=10&category=9&difficulty=easy&type=multiple&encode=base64`
   );
 
   if (response.response_code === 0) {
